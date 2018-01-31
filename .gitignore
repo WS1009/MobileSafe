@@ -1,9 +1,8 @@
-*.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
+.DS_Store # only needed under mac os
 /build
 /captures
-.externalNativeBuild
+*.iml
+.idea
+*.apk #optional
