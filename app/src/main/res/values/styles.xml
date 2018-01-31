@@ -1,0 +1,117 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+        <!-- Customize your theme here. -->
+        <!--隐藏标题栏-->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+ <!--   <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#8866ff00"
+        android:gravity="center"
+        android:text="功能列表"
+        android:textColor="@color/black"
+        android:textSize="22sp" />-->
+
+    <style name="TitleStyle" >
+        <!-- Customize your theme here. -->
+        <!--隐藏标题栏-->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">#8866ff00</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+ <!--   android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="您的手机防盗卫士："
+    android:textSize="18sp"
+    android:textColor="@color/black"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"-->
+
+
+    <style name="ContentStyle" >
+        <!-- Customize your theme here. -->
+        <!--隐藏标题栏-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@color/black</item>
+
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+
+<!--    android:id="@+id/button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/btn_green_selector"
+    android:drawableRight="@mipmap/next"
+      android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+             android:onClick="next"
+    android:text="下一步"-->
+
+    <style name="NextStyle" >
+        <!-- Customize your theme here. -->
+        <!--隐藏标题栏-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@drawable/btn_green_selector</item>
+        <item name="android:drawableRight">@mipmap/next</item>
+        <item name="android:text">下一步</item>
+        <item name="android:onClick">next</item>
+
+    </style>
+
+    <style name="PreviousStyle" >
+        <!-- Customize your theme here. -->
+        <!--隐藏标题栏-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:background">@drawable/btn_green_selector</item>
+        <item name="android:drawableLeft">@mipmap/previous</item>
+        <item name="android:text">上一步</item>
+        <item name="android:onClick">previous</item>
+
+    </style>
+
+    <style name="MyProgressBar" parent="android:Widget.ProgressBar">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_medium_white</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">3500</item>
+        <item name="android:minWidth">48dip</item>
+        <item name="android:maxWidth">48dip</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
+
+    </style>
+    <style name="widget_text">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/textColorPrimaryDark</item>
+    </style>
+    <style name="MyHorizontalProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_horizontal</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+</resources>
