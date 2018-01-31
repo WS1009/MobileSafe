@@ -37,7 +37,7 @@ public class AddressActivity extends Activity {
             //文字发生变化时回调
 
             /**
-             *s.toString():实时输入的文本
+             *s.toString():实时输入的文本，test
              * @param s
              * @param start
              * @param count
