@@ -69,6 +69,7 @@ public class TaskManagerActivity extends Activity {
 			adapter.notifyDataSetChanged();
 		}
 	}
+
 	/**
 	 * 区别：
 	 *
@@ -102,7 +103,6 @@ public class TaskManagerActivity extends Activity {
 				// 得到当前点击listview的对象
 				Object object = list_view.getItemAtPosition(position);
 
-
 				if (object != null && object instanceof TaskInfo) {
 
 					TaskInfo taskInfo = (TaskInfo) object;
@@ -132,13 +132,11 @@ public class TaskManagerActivity extends Activity {
 						// 使用更新adapter处理
 						// taskManagerAdapter.notifyDataSetChanged();
 					}
-
 				}
-
 			}
-
 		});
 	}
+
 	private void initData() {
 		new Thread() {
 
@@ -157,21 +155,17 @@ public class TaskManagerActivity extends Activity {
 					} else {
 						systemAppInfos.add(taskInfo);
 					}
-
 				}
 
 				runOnUiThread(new Runnable() {
-
 					@Override
 					public void run() {
 						adapter = new TaskManagerAdapter();
 						list_view.setAdapter(adapter);
 					}
 				});
-
 			};
 		}.start();
-
 	}
 
 	private class TaskManagerAdapter extends BaseAdapter {

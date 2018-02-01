@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -75,6 +76,7 @@ public class AddressActivity extends Activity {
         }else{
             Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
 
+            //自定义插补器
             // shake.setInterpolator(new Interpolator() {
             // @Override
             // public float getInterpolation(float x) {
@@ -83,6 +85,8 @@ public class AddressActivity extends Activity {
             // return y;
             // }
             // });
+
+
 
             etNumber.startAnimation(shake);
             vibrate();

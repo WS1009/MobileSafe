@@ -41,12 +41,12 @@ public abstract class BaseSetupActivity extends Activity {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 //向右滑，上一页
-                if ((e2.getRawX()-e1.getRawX())>200){
+                if ((e2.getRawX()-e1.getRawX())>100){
                     showPreviousPage();
                     return true;
                 }
                 //向左滑，下一页
-                if ((e1.getRawX()-e2.getRawX())>200){
+                if ((e1.getRawX()-e2.getRawX())>100){
                     showNextPage();
                     return true;
                 }

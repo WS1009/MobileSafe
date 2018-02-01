@@ -1,6 +1,9 @@
 package com.wangshun.ms.activity;
 
 import android.app.Activity;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,11 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wangshun.ms.R;
+import com.wangshun.ms.receiver.AdminReceiver;
 
 public class LostFindActivity extends Activity {
 
     private TextView tvSafePhone;
     private ImageView ivProtect;
+
+    private DevicePolicyManager mDPM;
+    private ComponentName mDeviceAdminSample;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +44,22 @@ public class LostFindActivity extends Activity {
             } else {
                 ivProtect.setImageResource(R.mipmap.unlock);
             }
+
+
+            //打开设备管理器，为了获取锁屏、设置密码的权限
+            mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);// 获取设备策略服务
+            mDeviceAdminSample = new ComponentName(this, AdminReceiver.class);// 设备管理组件
+
+//            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+//            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdminSample);
+//            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "设备管理器已经打开");
+//            startActivity(intent);
+
         } else {
             //跳转到设置向导页
             startActivity(new Intent(LostFindActivity.this, Setup1Activity.class));
             finish();
         }
-
-
     }
 
 

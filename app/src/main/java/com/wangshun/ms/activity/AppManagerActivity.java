@@ -315,7 +315,6 @@ public class AppManagerActivity extends Activity implements View.OnClickListener
                         tv_app.setText("用户程序(" + userAppInfos.size() + ")个");
                     }
                 }
-
             }
         });
 

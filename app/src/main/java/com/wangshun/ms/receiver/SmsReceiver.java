@@ -2,11 +2,13 @@ package com.wangshun.ms.receiver;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.telephony.SmsMessage;
+import android.widget.Toast;
 
 import com.wangshun.ms.R;
 import com.wangshun.ms.service.LocationService;
@@ -29,7 +31,7 @@ public class SmsReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		Object[] objects = (Object[]) intent.getExtras().get("pdus");
 
-		for (Object object : objects) {// 短信最多140字节,
+			for (Object object : objects) {// 短信最多140字节,
 			// 超出的话,会分为多条短信发送,所以是一个数组,因为我们的短信指令很短,所以for循环只执行一次
 			SmsMessage message = SmsMessage.createFromPdu((byte[]) object);
 			String originatingAddress = message.getOriginatingAddress();// 短信来源号码
@@ -66,7 +68,7 @@ public class SmsReceiver extends BroadcastReceiver {
 			} else if ("#*lockscreen*#".equals(messageBody)) {
 				System.out.println("远程锁屏");
 
-				//自己补全
+				//自己补全		AdminReceiver中实现远程锁屏
 
 
 				abortBroadcast();

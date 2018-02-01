@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.telephony.SmsManager;
 
 /**
  * 获取经纬度坐标的service
@@ -63,6 +64,11 @@ public class LocationService extends Service {
 							"location",
 							"j:" + location.getLongitude() + "; w:"
 									+ location.getLatitude()).commit();
+
+			SmsManager smsManager = SmsManager.getDefault();
+			smsManager.sendTextMessage("5556",null,
+					"j:" + location.getLongitude() + "; w:"
+							+ location.getLatitude(),null,null);
 			
 			stopSelf();//停掉service
 		}

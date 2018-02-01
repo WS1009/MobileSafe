@@ -52,7 +52,6 @@ public class AddressService extends Service {
     public void onCreate() {
         super.onCreate();
 
-
         mPref = getSharedPreferences("config", MODE_PRIVATE);
 
         tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);

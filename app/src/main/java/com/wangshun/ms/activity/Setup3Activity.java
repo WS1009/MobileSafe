@@ -72,8 +72,7 @@ public class Setup3Activity extends BaseSetupActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (resultCode == Activity.RESULT_OK) {
-
+        if (resultCode == Activity.RESULT_OK && data != null) {
             String phone = data.getStringExtra("phone");
             //替换-和空格
             phone = phone.replaceAll("-", "").replaceAll(" ", "");

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.wangshun.ms.R;
 import com.wangshun.ms.service.AddressService;
@@ -142,7 +143,10 @@ public class SettingActivity extends Activity {
         });
     }
 
+
     final String[] items = new String[] { "半透明", "活力橙", "卫士蓝", "金属灰", "苹果绿" };
+
+
     /**
      * 修改提示框的显示风格
      */

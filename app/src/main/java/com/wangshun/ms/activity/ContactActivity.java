@@ -58,7 +58,7 @@ public class ContactActivity extends Activity {
 
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
-		// 从raw_contacts中读取联系人的id("contact_id"),ContentResolver 内容提供者
+		// 从raw_contacts中读取联系人的id("contact_id"),ContentResolver 内容解析器
 		Cursor rawContactsCursor = getContentResolver().query(rawContactsUri,
 				new String[] { "contact_id" }, null, null, null);
 		if (rawContactsCursor != null) {
