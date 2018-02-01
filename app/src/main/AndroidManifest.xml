@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wangshun.ms">
+    package="com.wangshun.ms"
+    android:versionCode="1"
+    android:versionName="1.0">
+    <!--本地应用版本号1，版本号2，有必要提示更新-->
+    <!--android:versionName="1.2.1"
+    版本名称1.0.1：最后一位代表修复原有版本的bug
+    倒数第二位代表更新部分功能
+    第一位代表项目重大更新（代码重构、大部分功能添加，界面整体修改）-->
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -142,18 +149,30 @@
             </intent-filter>
         </receiver>
 
+        <!--设备管理器的广播接收者，锁屏、设密码、、、-->
         <receiver
             android:name=".receiver.AdminReceiver"
-            android:enabled="true"
-            android:exported="true" />
+            android:description="@string/sample_device_admin_description"
+            android:label="@string/sample_device_admin"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_sample" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
 
 
+        <!--开机广播-->
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
+        <!--拦截短信的广播-->
         <receiver android:name=".receiver.SmsReceiver">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
