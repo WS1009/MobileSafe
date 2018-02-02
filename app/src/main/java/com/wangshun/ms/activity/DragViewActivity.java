@@ -69,8 +69,10 @@ public class DragViewActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                //1、原数组 2、原数组拷贝的起始位置    3、目标数组  4、目标数组接受拷贝的位置   5、拷贝长度
                 System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
                 mHits[mHits.length - 1] = SystemClock.uptimeMillis();// 开机后开始计算的时间
+                //如此也行 if((mHits[mHits.length]-mHits[0])>500){。。。}
                 if (mHits[0] >= (SystemClock.uptimeMillis() - 500)) {
                     // 把图片居中
                     ivDrag.layout(winWidth / 2 - ivDrag.getWidth() / 2,
