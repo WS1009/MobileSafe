@@ -59,6 +59,7 @@ public class AddressService extends Service {
         //监听来电的状态
         tm.listen(listener,PhoneStateListener.LISTEN_CALL_STATE);
 
+        //监听去电的广播（需要权限）
         receiver = new OutCallReceiver();
         IntentFilter filter=new IntentFilter(Intent.ACTION_NEW_OUTGOING_CALL);
         registerReceiver(receiver,filter);//动态注册广播

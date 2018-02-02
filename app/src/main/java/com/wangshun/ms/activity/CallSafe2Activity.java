@@ -74,7 +74,7 @@ public class CallSafe2Activity extends Activity {
             @Override
             public void run() {
 
-                dao = new BlackNumberDao(CallSafe2Activity.this);
+                dao = BlackNumberDao.getInstance(CallSafe2Activity.this);
                 //通过总的记录数 / 每页多少条数据
                 totalPage = dao.getTotalNumber() / mPageSize;
                 System.out.println("总的页码=="+totalPage);

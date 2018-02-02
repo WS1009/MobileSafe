@@ -14,10 +14,20 @@ import java.util.List;
 
 public class BlackNumberDao {
 
-    public BlackNumberOpenHelper helper;
+    private BlackNumberOpenHelper helper;
 
-    public BlackNumberDao(Context context) {
+    private BlackNumberDao(Context context) {
         helper = new BlackNumberOpenHelper(context);
+    }
+
+    private static BlackNumberDao blackNumberDao=null;
+
+    //单例模式
+    public static BlackNumberDao getInstance(Context context){
+        if (blackNumberDao==null){
+            blackNumberDao=new BlackNumberDao(context);
+        }
+        return blackNumberDao;
     }
 
     /**

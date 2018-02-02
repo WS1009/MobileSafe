@@ -37,7 +37,7 @@ public class CallSafeService extends Service {
 
     @Override
     public void onCreate() {
-        dao = new BlackNumberDao(this);
+        dao =  BlackNumberDao.getInstance(this);
         //获取到系统的电话服务
         tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         listener = new MyPhoneListener();

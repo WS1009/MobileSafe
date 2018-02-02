@@ -83,7 +83,7 @@ public class CallSafeActivity extends Activity {
     };
 
     private void initData() {
-        dao = new BlackNumberDao(CallSafeActivity.this);
+        dao = BlackNumberDao.getInstance(CallSafeActivity.this);
         //一共有多少条数据
         totalNumber = dao.getTotalNumber();
         new Thread() {
