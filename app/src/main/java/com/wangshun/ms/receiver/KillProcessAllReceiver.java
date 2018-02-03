@@ -5,6 +5,7 @@ import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Process;
 import android.widget.Toast;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class KillProcessAllReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+
 		ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
 		//得到手机上面正在运行的进程
 		List<RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
