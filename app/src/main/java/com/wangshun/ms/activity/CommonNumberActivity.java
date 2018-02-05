@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * 常用号码查询
  */
-public class commonNumberActivity extends Activity {
+public class CommonNumberActivity extends Activity {
 
     private ExpandableListView elv_common_number;
     private List<Group> mGroup;
@@ -45,6 +45,7 @@ public class commonNumberActivity extends Activity {
 
         mAdapter = new MyAdapter();
         elv_common_number.setAdapter(mAdapter);
+
         //给可扩展listview注册点击事件
         elv_common_number.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
