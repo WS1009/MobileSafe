@@ -22,6 +22,9 @@ import com.wangshun.ms.utils.MD5Utils;
 
 import java.util.List;
 
+/**
+ * 病毒查杀
+ */
 public class AntivirusActivity extends Activity {
 	// 扫描开始
 	protected static final int BEGING = 1;
@@ -181,7 +184,7 @@ public class AntivirusActivity extends Activity {
 				message.what = FINISH;
 
 				handler.sendMessage(message);
-			};
+			}
 		}.start();
 
 	}

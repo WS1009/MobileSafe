@@ -114,6 +114,9 @@ public class SplashActivity extends Activity {
         //拷贝资产目录下的病毒数据库文件
         copyDB("antivirus.db");
 
+        //拷贝常用号码数据库拷贝过程
+        copyDB("commonnum.db");
+
         //创建快捷方式
         createShortcut();
         //更新病毒数据库
@@ -488,7 +491,7 @@ public class SplashActivity extends Activity {
          * 3你长成什么样子
          */
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
-        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "黑马手机卫士");
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "手机卫士");
         //干什么事情
         /**
          * 这个地方不能使用显示意图

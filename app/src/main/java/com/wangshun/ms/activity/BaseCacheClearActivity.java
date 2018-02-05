@@ -1,11 +1,8 @@
 package com.wangshun.ms.activity;
 
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TabHost.TabSpec;
 
 import com.wangshun.ms.R;

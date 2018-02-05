@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.wangshun.ms.R;
 import com.wangshun.ms.service.AddressService;
 import com.wangshun.ms.service.CallSafeService;
+import com.wangshun.ms.service.WatchDogService;
 import com.wangshun.ms.utils.ServiceStatusUtils;
 import com.wangshun.ms.view.SettingClickView;
 import com.wangshun.ms.view.SettingItemView;
@@ -40,7 +41,33 @@ public class SettingActivity extends Activity {
         initAddressStyle();
         initAddressLocation();
         initBlackView();
+        initAppLock();
     }
+
+    /**
+     * 初始化程序锁方法
+     */
+    private void initAppLock() {
+        final SettingItemView siv_app_lock = (SettingItemView) findViewById(R.id.siv_app_lock);
+        boolean isRunning = ServiceStatusUtils.isServiceRunning(this, "com.wangshun.ms.service.WatchDogService");
+        siv_app_lock.setChecked(isRunning);
+
+        siv_app_lock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isCheck = siv_app_lock.isChecked();
+                siv_app_lock.setChecked(!isCheck);
+                if(!isCheck){
+                    //开启服务
+                    startService(new Intent(getApplicationContext(), WatchDogService.class));
+                }else{
+                    //关闭服务
+                    stopService(new Intent(getApplicationContext(), WatchDogService.class));
+                }
+            }
+        });
+    }
+
 
     /**
      * 初始化黑名单

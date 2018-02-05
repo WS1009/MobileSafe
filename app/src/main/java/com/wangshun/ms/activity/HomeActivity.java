@@ -98,7 +98,7 @@ public class HomeActivity extends Activity {
                         startActivity(new Intent(HomeActivity.this,AntivirusActivity.class));
                         break;
                     case 6://缓存清理
-                        startActivity(new Intent(HomeActivity.this,CleanCacheActivity.class));
+                        startActivity(new Intent(HomeActivity.this,BaseCacheClearActivity.class));
                         break;
                     case 7:
                         //高级工具

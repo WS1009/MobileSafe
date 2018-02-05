@@ -72,10 +72,10 @@ public class CallSafeActivity extends Activity {
         @Override
         public void handleMessage(Message msg) {
             ll_pb.setVisibility(View.INVISIBLE);
-            if(adapter == null){
+            if (adapter == null) {
                 adapter = new CallSafeAdapter(blackNumberInfos, CallSafeActivity.this);
                 list_view.setAdapter(adapter);
-            }else{
+            } else {
                 adapter.notifyDataSetChanged();
             }
 
@@ -132,36 +132,36 @@ public class CallSafeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String str_number = et_number.getText().toString().trim();
-                if(TextUtils.isEmpty(str_number)){
-                    Toast.makeText(CallSafeActivity.this,"请输入黑名单号码",Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(str_number)) {
+                    Toast.makeText(CallSafeActivity.this, "请输入黑名单号码", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 String mode = "";
 
-                if(cb_phone.isChecked()&& cb_sms.isChecked()){
+                if (cb_phone.isChecked() && cb_sms.isChecked()) {
                     mode = "1";
-                }else if(cb_phone.isChecked()){
+                } else if (cb_phone.isChecked()) {
                     mode = "2";
-                }else if(cb_sms.isChecked()){
+                } else if (cb_sms.isChecked()) {
                     mode = "3";
-                }else{
-                    Toast.makeText(CallSafeActivity.this,"请勾选拦截模式",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CallSafeActivity.this, "请勾选拦截模式", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 BlackNumberInfo blackNumberInfo = new BlackNumberInfo();
                 blackNumberInfo.setNumber(str_number);
                 blackNumberInfo.setMode(mode);
                 //添加到第一条位置
-                blackNumberInfos.add(0,blackNumberInfo);
+                blackNumberInfos.add(0, blackNumberInfo);
 
                 //把电话号码和拦截模式添加到数据库。
-                dao.add(str_number,mode);
+                dao.add(str_number, mode);
 
-                if(adapter == null){
+                if (adapter == null) {
                     adapter = new CallSafeAdapter(blackNumberInfos, CallSafeActivity.this);
                     list_view.setAdapter(adapter);
-                }else{
+                } else {
                     adapter.notifyDataSetChanged();
                 }
 
@@ -199,7 +199,7 @@ public class CallSafeActivity extends Activity {
                         //获取到最后一条显示的数据
                         int lastVisiblePosition = list_view.getLastVisiblePosition();
                         System.out.println("lastVisiblePosition==========" + lastVisiblePosition);
-                        if(lastVisiblePosition == blackNumberInfos.size() - 1){
+                        if (lastVisiblePosition == blackNumberInfos.size() - 1) {
                             // 加载更多的数据。 更改加载数据的开始位置
                             mStartIndex += maxCount;
                             if (mStartIndex >= totalNumber) {
@@ -233,18 +233,25 @@ public class CallSafeActivity extends Activity {
         }
 
 
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
-            if (convertView == null) {
+            ViewHolder holder = null;
+            //例如当前屏幕只能显示5个item，前6个item属于首次创建，后面的只需要复用即可
+            if (convertView == null) {//当前条目首次构建
+
                 convertView = View.inflate(CallSafeActivity.this, R.layout.item_call_safe, null);
+
+                //用于存储所有找到的控件
                 holder = new ViewHolder();
+
                 holder.tv_number = (TextView) convertView.findViewById(R.id.tv_number);
                 holder.tv_mode = (TextView) convertView.findViewById(R.id.tv_mode);
                 holder.iv_delete = (ImageView) convertView.findViewById(R.id.iv_delete);
+
+                //存储holder对象
                 convertView.setTag(holder);
             } else {
+                //复用convertView,此时holder中就包含已经找过的控件了
                 holder = (ViewHolder) convertView.getTag();
             }
 

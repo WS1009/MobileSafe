@@ -106,7 +106,7 @@ public class CacheClearActivity extends Activity {
                     ll_add_text.removeAllViews();
                     break;
             }
-        };
+        }
     };
 
     @Override

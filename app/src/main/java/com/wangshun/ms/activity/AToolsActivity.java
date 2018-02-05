@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -52,11 +53,13 @@ public class AToolsActivity extends Activity {
         pd.show();
         new Thread() {
             public void run() {
+                Log.i("backUpSms", "run: 备份短信");
                 boolean result = SmsUtils.backUp(AToolsActivity.this,
                         new SmsUtils.BackUpCallBackSms() {
 
                             @Override
                             public void onBackUpSms(int process) {
+                                //ProgressDialog可以在子线程中更新进度
                                 pd.setProgress(process);
                                 progressBar1.setProgress(process);
                             }
@@ -80,7 +83,20 @@ public class AToolsActivity extends Activity {
 
     }
 
+    /**
+     * 常用号码查询
+     * @param view
+     */
+    public void commonNumberQquery(View view){
+        startActivity(new Intent(this,CommonNumberActivity.class));
+    }
 
-
+    /**
+     * 程序锁
+     * @param view
+     */
+    public void appLock(View view){
+        startActivity(new Intent(getApplicationContext(), AppLockActivity.class));
+    }
 
 }

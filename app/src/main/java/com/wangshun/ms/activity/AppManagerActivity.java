@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StatFs;
 import android.text.format.Formatter;
 import android.view.Gravity;
 import android.view.View;
@@ -29,9 +30,9 @@ import android.widget.TextView;
 
 import com.wangshun.ms.R;
 import com.wangshun.ms.bean.AppInfo;
-import com.wangshun.ms.engine.AppInfos;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.wangshun.ms.engine.AppInfoProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -217,6 +218,7 @@ public class AppManagerActivity extends Activity implements View.OnClickListener
 
             return view;
         }
+
     }
 
     static class ViewHolder {
@@ -239,7 +241,7 @@ public class AppManagerActivity extends Activity implements View.OnClickListener
             @Override
             public void run() {
                 //获取到所有安装到手机上面的应用程序
-                appInfos = AppInfos.getAppInfos(AppManagerActivity.this);
+                appInfos = AppInfoProvider.getAppInfoList(AppManagerActivity.this);
                 //appInfos拆成 用户程序的集合 + 系统程序的集合
 
                 //用户程序的集合
@@ -264,12 +266,31 @@ public class AppManagerActivity extends Activity implements View.OnClickListener
 
     }
 
+    /**
+     *此方法可用于获取磁盘和SD卡存储空间大小，此类中没有调用，仅为提供备选方法
+     * @param path：
+     *     Environment.getDataDirectory().getAbsolutePath();磁盘路径
+     *     Environment.getExternalStorageDirectory().getAbsolutePath();SD卡路径
+     * @return 为byte
+     */
+    public long getAvailSpace(String path){
+        //获取可用磁盘的大小类
+        StatFs statFs = new StatFs(path);
+        //获取可用区块的个数
+        long availableBlocks = statFs.getAvailableBlocks();
+        //获取区块的大小
+        long blockSize = statFs.getBlockSize();
+        //可用空间的大小==区块大小*可用区块个数
+        return availableBlocks*blockSize;
+    }
+
     private void initUI() {
 
         setContentView(R.layout.activity_app_manager);
         ViewUtils.inject(this);
         //获取到rom内存的运行的剩余空间
         long rom_freeSpace = Environment.getDataDirectory().getFreeSpace();
+
         //获取到SD卡的剩余空间
         long sd_freeSpace = Environment.getExternalStorageDirectory().getFreeSpace();
 
@@ -347,7 +368,7 @@ public class AppManagerActivity extends Activity implements View.OnClickListener
 
                     ll_detail.setOnClickListener(AppManagerActivity.this);
 
-
+                    //如果之前popupWindow已经显示，先将其隐藏然后在重新显示出来
                     popupWindowDismiss();
 
 
