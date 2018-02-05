@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:state_pressed="true" android:drawable="@mipmap/function_greenbutton_pressed"/>
-<item android:state_focused="true" android:drawable="@mipmap/function_greenbutton_pressed"/>
-<item  android:drawable="@mipmap/function_greenbutton_normal"/>
+    <!--点击-->
+    <item android:drawable="@mipmap/function_greenbutton_pressed"
+        android:state_pressed="true" />
+    <!--获取焦点-->
+    <item android:drawable="@mipmap/function_greenbutton_pressed"
+        android:state_focused="true" />
+    <!--悬浮-->
+    <item android:drawable="@mipmap/function_greenbutton_pressed"
+        android:state_hovered="true" />
+    <!--默认-->
+    <item android:drawable="@mipmap/function_greenbutton_normal" />
 </selector>

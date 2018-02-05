@@ -15,6 +15,9 @@ import com.wangshun.ms.bean.TaskInfo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 进程信息
+ */
 public class TaskInfoParser {
 
 	public static List<TaskInfo> getTaskInfos(Context context) {

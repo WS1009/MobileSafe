@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:padding="5dp">
@@ -21,6 +22,8 @@
         android:textColor="#a000"
         android:textSize="18sp" />
 
+    <!--让当前的CheckBox不能被点击，即不能响应事件
+    事件传递机制-->
     <CheckBox
         android:id="@+id/cb_status"
         android:layout_width="wrap_content"

@@ -3,11 +3,14 @@
     package="com.wangshun.ms"
     android:versionCode="1"
     android:versionName="1.0">
-    <!--本地应用版本号1，版本号2，有必要提示更新-->
-    <!--android:versionName="1.2.1"
+
+    <!-- 本地应用版本号1，版本号2，有必要提示更新 -->
+    <!--
+    android:versionName="1.2.1"
     版本名称1.0.1：最后一位代表修复原有版本的bug
     倒数第二位代表更新部分功能
-    第一位代表项目重大更新（代码重构、大部分功能添加，界面整体修改）-->
+    第一位代表项目重大更新（代码重构、大部分功能添加，界面整体修改）
+    -->
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -39,33 +42,39 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Android5.0之后的获取任务栈的权限 -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
     <application
+        android:name=".global.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity" >
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!--主页-->
-        <activity android:name=".activity.HomeActivity" android:launchMode="singleTask">
+        <!-- 主页 -->
+        <activity
+            android:name=".activity.HomeActivity"
+            android:launchMode="singleTask">
             <intent-filter>
-                <!-- 这个名字可以随便取 -->
-                <action android:name="aaa.bbb.ccc"></action>
 
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <!-- 这个名字可以随便取 -->
+                <action android:name="aaa.bbb.ccc" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--设置-->
+        <!-- 设置 -->
         <activity android:name=".activity.SettingActivity" />
-
         <activity android:name=".activity.LostFindActivity" />
         <activity android:name=".activity.Setup1Activity" />
         <activity android:name=".activity.Setup2Activity" />
@@ -88,7 +97,6 @@
             android:name=".activity.DragViewActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-
         <!-- 设备管理器 -->
         <!-- <receiver -->
         <!-- android:name=".receiver.AdminReceiver" -->
@@ -106,14 +114,11 @@
         <!-- </receiver> -->
 
         <service android:name=".service.LocationService" />
-
-
         <service
             android:name=".service.AddressService"
             android:enabled="true"
             android:exported="true" />
-
-        <service android:name="com.wangshun.ms.service.KillProcesWidgetService"></service>
+        <service android:name=".service.KillProcesWidgetService" />
 
         <!-- <receiver -->
         <!-- android:name=".receiver.OutCallReceiver" -->
@@ -127,11 +132,10 @@
         <service
             android:name=".service.CallSafeService"
             android:enabled="true"
-            android:exported="true"></service>
-
+            android:exported="true" />
 
         <!-- 桌面小部件的配置 -->
-        <receiver android:name="com.wangshun.ms.receiver.MyAppWidget">
+        <receiver android:name=".receiver.MyAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -141,20 +145,19 @@
                 android:resource="@xml/example_appwidget_info" />
         </receiver>
 
-
         <!-- 清理所有的进程 -->
-        <receiver android:name="com.wangshun.ms.receiver.KillProcessAllReceiver">
+        <receiver android:name=".receiver.KillProcessAllReceiver">
             <intent-filter>
-                <action android:name="com.wangshun.ms" />
+                <action android:name="com.wangshun.ms.killAllProcess" />
             </intent-filter>
         </receiver>
 
-        <!--设备管理器的广播接收者，锁屏、设密码、、、-->
+        <!-- 设备管理器的广播接收者，锁屏、设密码、、、 -->
         <receiver
             android:name=".receiver.AdminReceiver"
             android:description="@string/sample_device_admin_description"
             android:label="@string/sample_device_admin"
-            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/device_admin_sample" />
@@ -164,20 +167,37 @@
             </intent-filter>
         </receiver>
 
-
-        <!--开机广播-->
+        <!-- 开机广播 -->
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <!--拦截短信的广播-->
+        <!-- 拦截短信的广播 -->
         <receiver android:name=".receiver.SmsReceiver">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
+        <activity android:name=".activity.CommonNumberActivity" />
+        <activity android:name=".activity.AppLockActivity" />
+
+        <service
+            android:name=".service.WatchDogService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <!-- 拦截的界面采用单利模式 -->
+        <!-- 挂起时不需要显示手机卫士的图标,true不要显示最近的图标，false弹出最近显示的图标 -->
+        <activity
+            android:name=".activity.EnterPsdActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance" />
+        <activity android:name=".activity.BaseCacheClearActivity" />
+        <activity android:name=".activity.CacheClearActivity" />
+        <activity android:name=".activity.SDCacheClearActivity"></activity>
     </application>
+
 </manifest>

@@ -48,6 +48,7 @@ public class CallSafeService extends Service {
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
         filter.setPriority(Integer.MAX_VALUE);
         registerReceiver(receiver, filter);
+
         super.onCreate();
     }
 
@@ -78,7 +79,11 @@ public class CallSafeService extends Service {
 
                         //观察（另外一个应用程序数据库的变化）呼叫记录的变化，如果呼叫记录生成了，就把呼叫记录给删除掉。
                         Uri uri = Uri.parse("content://call_log/calls");
-                        getContentResolver().registerContentObserver(uri, true, new CallLogObserver(new Handler(), incomingNumber));
+
+                        //在内容解析器上注册内容观察者，第二个参数表示模糊匹配
+                        getContentResolver().registerContentObserver(
+                                uri, true,
+                                new CallLogObserver(new Handler(), incomingNumber));
                         //用代码挂断电话。
                         endCall();//电话挂断之后，会在另外一个应用程序里面生成呼叫记录。
                         //清除黑名单号码产生的呼叫记录
@@ -107,8 +112,9 @@ public class CallSafeService extends Service {
         @Override
         public void onChange(boolean selfChange) {
             Log.i("CallLogObserver", "呼叫记录数据库的内容变化了。");
-            getContentResolver().unregisterContentObserver(this);
             deleteCallLog(incomingNumber);
+            //注销内容观察者
+            getContentResolver().unregisterContentObserver(this);
             super.onChange(selfChange);
         }
     }
@@ -127,8 +133,10 @@ public class CallSafeService extends Service {
 
     @Override
     public void onDestroy() {
+        //注销广播
         unregisterReceiver(receiver);
         receiver = null;
+        //取消对电话的状态监听
         tm.listen(listener, PhoneStateListener.LISTEN_NONE);
         listener = null;
         super.onDestroy();

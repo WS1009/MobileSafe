@@ -43,4 +43,33 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="常用号码查询"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:clickable="true"
+        android:onClick="commonNumberQquery"
+        android:drawablePadding="5dp"
+        android:background="@drawable/button"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="程序锁"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:clickable="true"
+        android:onClick="appLock"
+        android:drawablePadding="5dp"
+        android:background="@drawable/button"
+        />
 </LinearLayout>

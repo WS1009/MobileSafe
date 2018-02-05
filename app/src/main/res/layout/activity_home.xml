@@ -10,6 +10,10 @@
         android:text="功能列表"
       />
 
+    <!--想让文字出现跑马灯效果，必须让其获取焦点，这里使用自定义控件-->
+    <!--android:marqueeRepeatLimit="marquee_forever"-->一直滚动
+    <!--android:focusable="true"-->获取焦点
+    <!--android:focusableInTouchMode="true"-->点击时获取焦点
     <com.wangshun.ms.view.FocusedTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

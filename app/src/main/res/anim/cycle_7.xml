@@ -16,4 +16,5 @@
      差补器，抖动七次
 -->
 
-<cycleInterpolator xmlns:android="http://schemas.android.com/apk/res/android" android:cycles="7" />
+<cycleInterpolator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:cycles="7" />

@@ -20,6 +20,7 @@ public class SettingItemView extends LinearLayout {
     private TextView tvTitle;
     private TextView tvDesc;
     private CheckBox cbStatus;
+    //命名空间与布局文件中的保持一致
     private String NAMESPACE = "http://schemas.android.com/apk/res/com.wangshun.ms";
     private String mTitle;
     private String mDescOn;
@@ -58,14 +59,19 @@ public class SettingItemView extends LinearLayout {
      * 初始化布局
      */
     private void initView() {
-        //将自定义的布局文件设置给当前的SettingItemView
-        View view = View.inflate(getContext(), R.layout.view_setting_item, this);
-        tvTitle = (TextView) view.findViewById(R.id.tv_title);
-        tvDesc = (TextView) view.findViewById(R.id.tv_desc);
-        cbStatus = (CheckBox) view.findViewById(R.id.cb_status);
+        //将自定义的布局文件设置给当前的SettingItemView，
+        // root为是否将此控件挂载在父控件上，所以为this
+        //也就是要将R.layout.view_setting_item中的控件放到SettingItemView中,或者代码如下也行
+//        View view = View.inflate(getContext(), R.layout.view_setting_item, null);
+//        this.addView(view);
+
+        View settingItemView = View.inflate(getContext(), R.layout.view_setting_item, this);
+        //以下三种写法都对
+        tvTitle = (TextView) settingItemView.findViewById(R.id.tv_title);
+        tvDesc = (TextView) this.findViewById(R.id.tv_desc);
+        cbStatus = (CheckBox) findViewById(R.id.cb_status);
 
         setTitle(mTitle);//设置标题
-
     }
 
     public void setTitle(String title) {
